@@ -315,7 +315,7 @@ form label {
     text-transform: uppercase;
 }
 
-#nome, #email {
+#nome, #email, #senha {
     width: 100%;
     padding: 5px;
     outline: 0;
