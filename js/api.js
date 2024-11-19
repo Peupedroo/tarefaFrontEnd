@@ -15,71 +15,105 @@ function obterMensagens() {
     return retorno;
 }
 
-function inserirMensagem(nome, email, mensagemTexto) {
-    var mensagem = {
-        nome: nome,
-        email: email,
-        mensagem: mensagemTexto
-    };
+function atualizarTabelaMensagens() {
+    const mensagens = obterMensagens(); 
+    const tabelaMensagens = document.getElementById('tabelaMensagens').getElementsByTagName('tbody')[0];
+    tabelaMensagens.innerHTML = ''; 
+    console.log(mensagens)
+    
+    for (let i = 0; i < mensagens.length; i++) {
+        const mensagem = mensagens[i];
+        const novaLinha = tabelaMensagens.insertRow();
 
-    $.ajax({
+       
+        const celulaNome = novaLinha.insertCell(0);
+        const celulaEmail = novaLinha.insertCell(1);
+        const celulaMensagem = novaLinha.insertCell(2);
+
+        celulaNome.textContent = mensagem.nome;
+        celulaEmail.textContent = mensagem.email;
+        celulaMensagem.textContent = mensagem.mensagem;
+        console.log("Mensagem " + i + ": ", mensagem);
+
+    }
+}
+
+function inserirMensagem(mensagem) {
+
+    /*
+
+    var mensagem = {
+            nome: "nome da pessoa", 
+            email: "email informado", 
+            mensagem: "a mensagem informada"} 
+
+    */
+
+    var inserir = $.ajax({
+
         url: 'https://app-p2-aab7c7fdddb8.herokuapp.com/mensagens',
         method: 'POST',
         data: JSON.stringify(mensagem),
         dataType: 'json',
         async: false,
         contentType: 'application/json',
-        success: function() {
-            console.log('Mensagem enviada com sucesso!');
-            atualizarTabelaMensagens(); 
-        },
-        error: function() {
-            console.error('Erro ao enviar mensagem.');
-        }
     });
 }
 
 function handleMensagem() {
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const mensagemTexto = document.getElementById('msg').value;
+    const txtNome = document.getElementById('nome').value;
+    const txtEmail = document.getElementById('email').value;
+    const txtMensagem = document.getElementById('msg').value;
 
-    if (nome && email && mensagemTexto) {
-        inserirMensagem(nome, email, mensagemTexto);
-    } else {
-        alert('Por favor, preencha todos os campos.');
+    var obj = {
+        nome: txtNome,
+        email: txtEmail,
+        mensagem: txtMensagem
     }
+
+    
+        inserirMensagem(obj);
+        
+        console.log(obj)
+  
 }
 
-function atualizarTabelaMensagens() {
-    const mensagens = obterMensagens();
-    const tabelaMensagens = document.getElementById('tabelaMensagens').getElementsByTagName('tbody')[0];
-    tabelaMensagens.innerHTML = ''; 
 
-    mensagens.forEach(mensagem => {
-        inserirMensagemNaTabela(mensagem);
+
+
+function validarUsuario() {
+    const email = document.getElementById('email-login').value;
+    const senha = document.getElementById('senha').value;
+
+   
+    const usuarioValido = {
+        email: email,
+        senha: senha
+    };
+
+    $.ajax({
+        url: 'https://app-p2-aab7c7fdddb8.herokuapp.com/usuarios/validar',
+        method: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(usuarioValido),
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    }).done(function(response) {
+        console.log("Resposta da API: ", response);
+
+        
+        if (response === true || response.valido === true) {
+            console.log("Usuário validado com sucesso!");
+            localStorage.setItem('adminAutenticado', 'true');
+            window.location.href = 'mensagens.html';
+        } else {
+            console.log("Email ou senha inválidos!");
+            alert('Email ou senha inválidos!');
+        }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Erro na comunicação com o servidor:', textStatus, errorThrown);
+        alert('Erro na comunicação com o servidor.');
     });
-}
-
-function inserirMensagemNaTabela(mensagem) {
-    const { nome, email, mensagem: conteudoMensagem } = mensagem;
-    const tabelaMensagens = document.getElementById('tabelaMensagens');
-
-    if (tabelaMensagens) {
-        const tbody = tabelaMensagens.getElementsByTagName('tbody')[0];
-        const newRow = tbody.insertRow();
-
-        createAndAppendCell(newRow, nome);
-        createAndAppendCell(newRow, email);
-        createAndAppendCell(newRow, conteudoMensagem);
-
-        console.log('Mensagem inserida na tabela:', mensagem);
-    } else {
-        console.error('Elemento tabelaMensagens não encontrado.');
-    }
-}
-
-function createAndAppendCell(row, text) {
-    const newColumn = row.insertCell();
-    newColumn.appendChild(document.createTextNode(text));
 }

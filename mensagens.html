@@ -1,64 +1,82 @@
-<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luxo - Aluguel de iates</title>
-    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/default.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxo - Aluguel de iates</title>
+  <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/default.css" />
 </head>
 
 <body>
 <div class="page">
-    <header>
-        <div id="title">
-            <img src="images/barco1.png" alt="ícone de barco" />
-            <div class="headtitle">
-                <h1>Luxo</h1>
-                <h2>Aluguel de iates</h2>
-            </div>
-        </div>
+  <header>
+    <div id="title">
+      <img src="images/barco1.png" alt="ícone de barco" />
+      <div class="headtitle">
+        <h1>Luxo</h1>
+        <h2>Aluguel de iates</h2>
+      </div>
+    </div>
 
-        <nav>
-            <ul class="navmenu">
-                <li><a href="index.html" class="accent">Página inicial</a></li>
-                <li><a href="aluguel.html">Aluguel de iates</a></li>
-                <li><a href="destinos.html">Destinos</a></li>
-                <li><a href="tripulacao.html">Tripulação</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="admin.html">Admin</a></li>
-            </ul>
-        </nav>
+    <nav>
+      <ul class="navmenu">
+        <li><a href="index.html" class="accent">Página inicial</a></li>
+        <li><a href="aluguel.html">Aluguel de iates</a></li>
+        <li><a href="destinos.html">Destinos</a></li>
+        <li><a href="tripulacao.html">Tripulação</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <header>
+      <h1>Mensagens Recebidas</h1>
     </header>
 
-    <main>
-        <header>
-            <h1>Mensagens Recebidas</h1>
-        </header>
+  
+    <form id="form-contato">
+      <label for="nome">Nome:</label>
+    
 
-        <main>
-            <!-- Tabela para exibir as mensagens -->
-            <table id="tabelaMensagens">
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Mensagem</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- As mensagens serão inseridas aqui dinamicamente -->
-                </tbody>
-            </table>
-        </main>
-    </main>
+      <label for="email">Email:</label>
+    
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+  
+    <table id="tabelaMensagens">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Mensagem</th>
+      </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </main>
 </div>
 
 <footer>
-    <p>© 2023 Luxo - Aluguel de Iates</p>
+  <p>© 2023 Luxo - Aluguel de Iates</p>
 </footer>
 
-<script src="js/api.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/api.js">
+  window.onload = function() {
+    atualizarTabelaMensagens();
+  };
+</script>
+
+
 </body>
 </html>
