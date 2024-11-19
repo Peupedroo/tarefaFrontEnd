@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luxo - Contato</title>
+  <title>Luxo - Aluguel de iates</title>
   <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
   <link rel="stylesheet" href="css/default.css" />
 </head>
@@ -19,6 +19,7 @@
         <h2>Aluguel de iates</h2>
       </div>
     </div>
+
     <nav>
       <ul class="navmenu">
         <li><a href="index.html" class="accent">Página inicial</a></li>
@@ -32,36 +33,42 @@
   </header>
 
   <main>
-    <div class="pagtitle">
-      <div class="bgtitle"></div>
-      <h2>Entre em contato</h2>
-    </div>
+    <header>
+      <h1>Mensagens Recebidas</h1>
+    </header>
 
-    <form id="contactForm">
-      <div class="entry">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" required />
-      </div>
+    <!-- Formulário de Contato para envio de mensagens -->
+    <form id="form-contato">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
 
-      <div class="entry">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" required />
-      </div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-      <div class="entry">
-        <label for="msg">Mensagem</label>
-        <textarea cols="40" rows="7" id="msg" required></textarea>
-      </div>
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+
+      <button type="submit">Enviar</button>
     </form>
 
-    <div class="buttons">
-      <button type="button" onclick="handleMensagem()" class="button">Enviar</button>
-    </div>
+    <!-- Tabela para exibir as mensagens -->
+    <table id="tabelaMensagens">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Mensagem</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- As mensagens serão inseridas aqui dinamicamente -->
+      </tbody>
+    </table>
   </main>
 </div>
 
 <footer>
-  <p>© 2023 por Luxo aluguel de iates</p>
+  <p>© 2023 Luxo - Aluguel de Iates</p>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

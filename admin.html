@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Admin</title>
     <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/default.css" />
 </head>
+
 <body>
 <div class="page">
     <header>
@@ -24,7 +26,7 @@
                 <li><a href="destinos.html">Destinos</a></li>
                 <li><a href="tripulacao.html">Tripulação</a></li>
                 <li><a href="contato.html">Contato</a></li>
-                <li><a href="adimin.html">Adimin</a> </li>
+                <li><a href="admin.html">Admin</a></li>
             </ul>
         </nav>
     </header>
@@ -32,29 +34,30 @@
     <main>
         <div class="pagtitle">
             <div class="bgtitle"></div>
-            <h2>Entrada do admin </h2>
+            <h2>Entrada do admin</h2>
         </div>
 
-        <form>
+        <form id="loginForm">
             <div class="entry">
-                <label for="email">E-mail</label>
-                <input type="email" id="emailAdimim" />
+                <label for="email-login">E-mail</label>
+                <input type="email" id="email-login" required />
             </div>
             <div class="entry">
-                <label for="senha">Senha </label>
-                <input type="text" id="senha" />
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" required />
+            </div>
+            <div class="buttons">
+                <button type="button" class="button" onclick="validarUsuario()">Entrar</button>
             </div>
         </form>
-
-        <div class="buttons">
-            <button onclick="validarUsuario()" class="button">Entrar</button>
-        </div>
     </main>
 </div>
 
 <footer>
     <p>© 2023 por Luxo aluguel de iates</p>
 </footer>
-<script></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/api.js"></script>
 </body>
 </html>
